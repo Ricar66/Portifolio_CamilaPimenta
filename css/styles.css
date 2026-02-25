@@ -1,0 +1,651 @@
+/* ================================================
+   CAMILA VIARO - PSICOLOGIA CLINICA
+   Premium CSS — Root Variables, Glassmorphism,
+   Golden Ratio Spacing, WCAG Accessible
+   ================================================ */
+
+/* ---- Design Tokens (Root Variables) ---- */
+:root {
+  /* Organic Palette */
+  --color-sage:        #5F6F52;
+  --color-sage-light:  #8B9D77;
+  --color-sage-pale:   #e6ede2;
+  --color-sage-50:     #f4f7f2;
+  --color-accent:      #B99470;
+  --color-accent-dark: #9a7350;
+  --color-accent-glow: rgba(185, 148, 112, 0.25);
+  --color-cream:       #F9F7F2;
+  --color-cream-dark:  #F0EDE5;
+  --color-white:       #ffffff;
+  --color-text:        #3d3a36;
+  --color-text-light:  #6b6560;
+  --color-text-muted:  #9a9590;
+  --color-border:      rgba(0, 0, 0, 0.06);
+  --color-hero-bg:     #e4d4b8;
+
+  /* Glassmorphism */
+  --glass-bg:          rgba(255, 255, 255, 0.65);
+  --glass-bg-strong:   rgba(255, 255, 255, 0.85);
+  --glass-border:      rgba(255, 255, 255, 0.35);
+  --glass-blur:        blur(16px);
+  --glass-blur-strong: blur(24px);
+
+  /* Golden Ratio Spacing (base 1rem = 16px) */
+  --space-xs:   0.5rem;    /* 8px */
+  --space-sm:   0.809rem;  /* ~13px */
+  --space-md:   1.309rem;  /* ~21px */
+  --space-lg:   2.118rem;  /* ~34px */
+  --space-xl:   3.427rem;  /* ~55px */
+  --space-2xl:  5.545rem;  /* ~89px */
+  --space-3xl:  8.972rem;  /* ~144px */
+
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans:  'Montserrat', system-ui, sans-serif;
+
+  /* Radius */
+  --radius-sm:  0.625rem;
+  --radius-md:  1rem;
+  --radius-lg:  1.25rem;
+  --radius-xl:  1.5rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm:   0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md:   0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-lg:   0 12px 32px rgba(0, 0, 0, 0.08);
+  --shadow-xl:   0 20px 48px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 4px 20px var(--color-accent-glow);
+
+  /* Transitions */
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --duration:    0.35s;
+}
+
+/* ---- Base ---- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+::selection {
+  background-color: var(--color-sage);
+  color: var(--color-white);
+}
+
+/* ---- Hero Full-Bleed Photo ---- */
+.hero-section {
+  position: relative;
+}
+
+.hero-warm-bg {
+  background: linear-gradient(
+    135deg,
+    #ecddd0 0%,
+    var(--color-hero-bg) 30%,
+    #dccdb0 60%,
+    #d4c5a9 100%
+  );
+}
+
+.hero-photo-fullbleed {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.hero-fullbleed-img {
+  height: 100%;
+  width: auto;
+  max-width: 65%;
+  object-fit: cover;
+  object-position: top center;
+  filter: sepia(0.08) saturate(1.05) brightness(1.02);
+}
+
+.hero-photo-fade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    var(--color-hero-bg) 0%,
+    rgba(228, 212, 184, 0.97) 15%,
+    rgba(228, 212, 184, 0.75) 40%,
+    rgba(228, 212, 184, 0.35) 60%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+@media (max-width: 1023px) {
+  .hero-fullbleed-img {
+    max-width: 100%;
+    opacity: 0.22;
+  }
+
+  .hero-photo-fade {
+    width: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(228, 212, 184, 0.5) 0%,
+      rgba(228, 212, 184, 0.88) 40%,
+      rgba(228, 212, 184, 0.97) 100%
+    );
+  }
+}
+
+/* ---- About Section Photo ---- */
+.about-photo-container {
+  position: relative;
+  background: linear-gradient(160deg, #ecddd0 0%, #dccdb0 50%, #d4c5a9 100%);
+}
+
+.about-photo-container img {
+  position: relative;
+  z-index: 0;
+  filter: sepia(0.06) saturate(1.05) brightness(1.02);
+}
+
+/* ---- Navigation Links ---- */
+.nav-link {
+  position: relative;
+  padding: var(--space-xs) var(--space-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-light);
+  transition: color var(--duration) var(--ease-smooth);
+  text-decoration: none;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: var(--color-sage);
+  transition: width var(--duration) var(--ease-smooth);
+  border-radius: 1px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--color-sage);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 60%;
+}
+
+/* ---- Navbar Scrolled — Glassmorphism ---- */
+.navbar-scrolled {
+  background: var(--glass-bg-strong) !important;
+  backdrop-filter: var(--glass-blur-strong);
+  -webkit-backdrop-filter: var(--glass-blur-strong);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.03);
+}
+
+/* ---- Mobile Navigation ---- */
+.mobile-nav-link {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--color-text);
+  transition: color var(--duration) var(--ease-smooth);
+  text-decoration: none;
+}
+
+.mobile-nav-link:hover {
+  color: var(--color-sage);
+}
+
+/* ---- Hamburger Menu ---- */
+.hamburger-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 24px;
+}
+
+.hamburger-lines .line {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: var(--color-text);
+  border-radius: 2px;
+  transition: transform 0.4s var(--ease-smooth), opacity 0.3s var(--ease-smooth);
+}
+
+.hamburger-lines.active .line-1 {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger-lines.active .line-2 {
+  opacity: 0;
+}
+
+.hamburger-lines.active .line-3 {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---- Buttons ---- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: 0.875rem var(--space-lg);
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  transition: all var(--duration) var(--ease-smooth);
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-dark);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 30px var(--color-accent-glow);
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(1);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: 0.875rem var(--space-lg);
+  background-color: transparent;
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border-radius: var(--radius-full);
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+  transition: all var(--duration) var(--ease-smooth);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-sage);
+  color: var(--color-sage);
+  background-color: rgba(95, 111, 82, 0.04);
+}
+
+/* ---- Area Cards — Glassmorphism + Elevation ---- */
+.area-card {
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  transition: all 0.4s var(--ease-smooth);
+  border: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.area-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-sage), var(--color-accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-smooth);
+}
+
+.area-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(95, 111, 82, 0.12);
+}
+
+.area-card:hover::before {
+  transform: scaleX(1);
+}
+
+.area-card-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: var(--color-sage-50);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-sage-light);
+  margin-bottom: var(--space-md);
+  transition: all var(--duration) var(--ease-smooth);
+}
+
+.area-card:hover .area-card-icon {
+  background-color: var(--color-sage);
+  color: var(--color-white);
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(95, 111, 82, 0.2);
+}
+
+/* ---- Therapy Steps — Glassmorphism ---- */
+.therapy-step {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all var(--duration) var(--ease-smooth);
+}
+
+.therapy-step:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(139, 157, 119, 0.35);
+  transform: translateX(8px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.therapy-step-number {
+  width: 2.5rem;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  background: linear-gradient(135deg, var(--color-sage-light), #a8c29c);
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--color-white);
+}
+
+/* ---- Testimonial Cards ---- */
+.testimonial-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  transition: all var(--duration) var(--ease-smooth);
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+
+/* ---- Carousel ---- */
+#carousel-track {
+  will-change: transform;
+}
+
+.carousel-slide {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.carousel-dot {
+  cursor: pointer;
+  border: none;
+  padding: 0;
+}
+
+/* ---- FAQ Accordion — Glassmorphism ---- */
+.faq-item {
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  transition: all var(--duration) var(--ease-smooth);
+}
+
+.faq-item:hover {
+  border-color: rgba(95, 111, 82, 0.15);
+}
+
+.faq-item.active {
+  box-shadow: 0 8px 28px rgba(95, 111, 82, 0.08);
+  border-color: rgba(95, 111, 82, 0.25);
+}
+
+.faq-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: none;
+  gap: 1rem;
+  transition: background-color var(--duration) var(--ease-smooth);
+}
+
+.faq-toggle:hover {
+  background-color: rgba(95, 111, 82, 0.03);
+}
+
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s var(--ease-smooth);
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+  color: var(--color-accent);
+}
+
+/* ---- WhatsApp Floating — with speech bubble ---- */
+#whatsapp-float {
+  transition: all 0.4s var(--ease-bounce);
+}
+
+.whatsapp-bubble {
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 0.75rem;
+  background: var(--color-white);
+  color: var(--color-text);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.625rem 1rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease-smooth), transform 0.4s var(--ease-smooth);
+  transform: translateY(-50%) translateX(8px);
+}
+
+.whatsapp-bubble::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 7px solid var(--color-white);
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+}
+
+.whatsapp-bubble.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ---- Scroll Reveal (JS IntersectionObserver) ---- */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease-smooth), transform 0.7s var(--ease-smooth);
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- Parallax Background ---- */
+.parallax-bg {
+  will-change: transform;
+}
+
+/* ---- Custom Scrollbar ---- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-sage-pale);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-sage-light);
+}
+
+/* ---- Section Divider ---- */
+.section-divider {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-sage), var(--color-accent));
+  border-radius: 2px;
+  margin: 0 auto;
+}
+
+/* ---- Mobile Responsive ---- */
+@media (max-width: 768px) {
+  .nav-link {
+    padding: var(--space-xs) 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    width: 100%;
+  }
+
+  .area-card {
+    padding: var(--space-md);
+  }
+
+  .therapy-step {
+    padding: var(--space-sm);
+  }
+
+  #whatsapp-float {
+    bottom: 1rem;
+    right: 1rem;
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+
+  #whatsapp-float svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .whatsapp-bubble {
+    display: none;
+  }
+
+  #back-to-top {
+    right: 4.5rem;
+    bottom: 1rem;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+/* iPhone SE / Small screens */
+@media (max-width: 375px) {
+  .hero-section h1 {
+    font-size: 1.875rem;
+  }
+
+  .area-card {
+    padding: 1.25rem;
+  }
+
+  .testimonial-card {
+    padding: 1.25rem;
+  }
+}
+
+/* Tablet fine-tune */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .area-card {
+    padding: 1.75rem;
+  }
+}
+
+/* ---- Accessibility ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---- Focus Visible ---- */
+:focus-visible {
+  outline: 2px solid var(--color-sage);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---- High contrast mode ---- */
+@media (prefers-contrast: high) {
+  .btn-primary {
+    border: 2px solid var(--color-white);
+  }
+
+  .nav-link {
+    text-decoration: underline;
+  }
+}

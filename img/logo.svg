@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 130" fill="none">
+  <defs>
+    <!-- Main gradient for the brain -->
+    <linearGradient id="brainMain" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7a9468"/>
+      <stop offset="40%" stop-color="#8B9D77"/>
+      <stop offset="70%" stop-color="#b8956e"/>
+      <stop offset="100%" stop-color="#C17C5E"/>
+    </linearGradient>
+    <!-- Lighter gradient for inner details -->
+    <linearGradient id="brainInner" x1="0%" y1="0%" x2="100%" y2="80%">
+      <stop offset="0%" stop-color="#a8c29c"/>
+      <stop offset="100%" stop-color="#d4a574"/>
+    </linearGradient>
+    <!-- Text gradient -->
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6d8460"/>
+      <stop offset="60%" stop-color="#8B9D77"/>
+      <stop offset="100%" stop-color="#C17C5E"/>
+    </linearGradient>
+    <!-- Fine detail gradient -->
+    <linearGradient id="detailGrad" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#8B9D77" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#C17C5E" stop-opacity="0.6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ============ BRAIN ILLUSTRATION ============ -->
+  <g transform="translate(8, 5) scale(1.1)">
+
+    <!-- === OUTER BRAIN CONTOUR - Left Hemisphere === -->
+    <path d="M55,100 C55,100 48,98 40,94 C32,90 24,84 18,76 C12,68 9,60 8,52
+             C7,44 8,36 12,29 C16,22 22,17 29,14 C36,11 42,11 47,13 C50,14 52,16 54,18"
+          stroke="url(#brainMain)" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+    <!-- === OUTER BRAIN CONTOUR - Right Hemisphere === -->
+    <path d="M55,100 C55,100 62,98 70,94 C78,90 86,84 92,76 C98,68 101,60 102,52
+             C103,44 102,36 98,29 C94,22 88,17 81,14 C74,11 68,11 63,13 C60,14 58,16 56,18"
+          stroke="url(#brainMain)" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+    <!-- === TOP DOME === -->
+    <path d="M47,13 C46,9 48,5 51,3 C53,2 55,2 57,3 C60,5 62,9 61,13"
+          stroke="url(#brainMain)" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+    <!-- === BRAIN STEM === -->
+    <path d="M55,100 C54,103 53,106 53,109 C53,111 54,112 55,112 C56,112 57,111 57,109 C57,106 56,103 55,100"
+          stroke="url(#brainMain)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+    <!-- === CENTRAL FISSURE (vertical) === -->
+    <path d="M55,16 C54.5,28 55.5,40 55,52 C54.5,64 55.5,76 55,88 C54.8,92 55,96 55,100"
+          stroke="url(#brainInner)" stroke-width="1" fill="none" stroke-linecap="round"
+          stroke-dasharray="3,3" opacity="0.5"/>
+
+    <!-- ====== LEFT HEMISPHERE GYRI (sulci lines) ====== -->
+    <!-- Frontal lobe curve 1 -->
+    <path d="M30,26 C34,23 38,24 42,22 C46,20 50,19 53,17"
+          stroke="url(#brainInner)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <!-- Frontal lobe curve 2 -->
+    <path d="M20,38 C26,34 32,37 38,34 C44,31 48,30 53,28"
+          stroke="url(#brainInner)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <!-- Parietal curve -->
+    <path d="M14,50 C20,46 28,50 34,47 C40,44 46,43 53,41"
+          stroke="url(#brainInner)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <!-- Temporal curve 1 -->
+    <path d="M12,62 C18,58 26,63 32,59 C38,55 46,56 53,54"
+          stroke="url(#brainInner)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.65"/>
+    <!-- Temporal curve 2 -->
+    <path d="M16,74 C22,70 30,74 36,70 C42,67 48,68 53,66"
+          stroke="url(#brainInner)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.6"/>
+    <!-- Occipital curve -->
+    <path d="M24,84 C30,80 36,83 42,80 C48,77 52,78 54,77"
+          stroke="url(#brainInner)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <!-- Lower curve -->
+    <path d="M36,92 C40,89 46,90 50,88 C52,87 54,87 55,86"
+          stroke="url(#brainInner)" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.45"/>
+
+    <!-- ====== RIGHT HEMISPHERE GYRI (sulci lines) ====== -->
+    <!-- Frontal lobe curve 1 -->
+    <path d="M57,17 C60,19 64,20 68,22 C72,24 76,23 80,26"
+          stroke="url(#brainInner)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <!-- Frontal lobe curve 2 -->
+    <path d="M57,28 C62,30 66,31 70,34 C76,37 82,34 90,38"
+          stroke="url(#brainInner)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <!-- Parietal curve -->
+    <path d="M57,41 C64,43 70,44 76,47 C82,50 88,46 96,50"
+          stroke="url(#brainInner)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <!-- Temporal curve 1 -->
+    <path d="M57,54 C64,56 72,55 78,59 C84,63 90,58 98,62"
+          stroke="url(#brainInner)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.65"/>
+    <!-- Temporal curve 2 -->
+    <path d="M57,66 C62,68 68,67 74,70 C80,74 86,70 94,74"
+          stroke="url(#brainInner)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.6"/>
+    <!-- Occipital curve -->
+    <path d="M56,77 C58,78 62,77 68,80 C74,83 80,80 86,84"
+          stroke="url(#brainInner)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <!-- Lower curve -->
+    <path d="M55,86 C58,88 62,87 66,90 C70,92 74,89 78,92"
+          stroke="url(#brainInner)" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.45"/>
+
+    <!-- ====== DECORATIVE SPIRALS - Left (the artistic touch) ====== -->
+    <!-- Spiral 1 - upper left -->
+    <path d="M34,30 C30,28 28,31 30,34 C32,37 36,36 37,33 C38,30 36,27 33,27 C29,27 26,30 27,34 C28,39 33,41 37,39"
+          stroke="url(#brainMain)" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.85"/>
+    <!-- Spiral 2 - middle left -->
+    <path d="M26,52 C22,50 20,53 22,56 C24,59 28,58 29,55 C30,52 28,49 25,49 C21,49 18,52 19,56 C20,61 25,63 29,61"
+          stroke="url(#brainMain)" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.75"/>
+    <!-- Spiral 3 - lower left -->
+    <path d="M32,72 C28,70 26,73 28,76 C30,79 34,78 35,75 C36,72 34,69 31,69 C27,69 25,72 26,76"
+          stroke="url(#brainMain)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.65"/>
+
+    <!-- ====== DECORATIVE SPIRALS - Right ====== -->
+    <!-- Spiral 1 - upper right -->
+    <path d="M76,30 C80,28 82,31 80,34 C78,37 74,36 73,33 C72,30 74,27 77,27 C81,27 84,30 83,34 C82,39 77,41 73,39"
+          stroke="url(#brainMain)" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.85"/>
+    <!-- Spiral 2 - middle right -->
+    <path d="M84,52 C88,50 90,53 88,56 C86,59 82,58 81,55 C80,52 82,49 85,49 C89,49 92,52 91,56 C90,61 85,63 81,61"
+          stroke="url(#brainMain)" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.75"/>
+    <!-- Spiral 3 - lower right -->
+    <path d="M78,72 C82,70 84,73 82,76 C80,79 76,78 75,75 C74,72 76,69 79,69 C83,69 85,72 84,76"
+          stroke="url(#brainMain)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.65"/>
+
+    <!-- ====== INNER DETAIL DOTS (neurons/synapses) ====== -->
+    <circle cx="40" cy="42" r="1.2" fill="#8B9D77" opacity="0.4"/>
+    <circle cx="44" cy="56" r="1" fill="#a8c29c" opacity="0.35"/>
+    <circle cx="36" cy="62" r="0.8" fill="#C17C5E" opacity="0.3"/>
+    <circle cx="48" cy="34" r="1" fill="#8B9D77" opacity="0.35"/>
+    <circle cx="62" cy="34" r="1" fill="#8B9D77" opacity="0.35"/>
+    <circle cx="70" cy="42" r="1.2" fill="#8B9D77" opacity="0.4"/>
+    <circle cx="66" cy="56" r="1" fill="#a8c29c" opacity="0.35"/>
+    <circle cx="74" cy="62" r="0.8" fill="#C17C5E" opacity="0.3"/>
+
+    <!-- ====== TINY CONNECTION LINES (neural pathways) ====== -->
+    <path d="M40,42 L44,56" stroke="url(#detailGrad)" stroke-width="0.5" opacity="0.3"/>
+    <path d="M48,34 L40,42" stroke="url(#detailGrad)" stroke-width="0.5" opacity="0.3"/>
+    <path d="M44,56 L36,62" stroke="url(#detailGrad)" stroke-width="0.5" opacity="0.25"/>
+    <path d="M70,42 L66,56" stroke="url(#detailGrad)" stroke-width="0.5" opacity="0.3"/>
+    <path d="M62,34 L70,42" stroke="url(#detailGrad)" stroke-width="0.5" opacity="0.3"/>
+    <path d="M66,56 L74,62" stroke="url(#detailGrad)" stroke-width="0.5" opacity="0.25"/>
+
+    <!-- ====== LEAF / NATURE ELEMENT at top ====== -->
+    <!-- Left leaf -->
+    <path d="M51,3 C48,0 44,-1 42,1 C40,3 41,6 44,7 C47,8 50,6 51,3"
+          stroke="url(#brainMain)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <path d="M51,3 L44,7" stroke="url(#brainMain)" stroke-width="0.6" fill="none" opacity="0.4"/>
+    <!-- Right leaf -->
+    <path d="M59,3 C62,0 66,-1 68,1 C70,3 69,6 66,7 C63,8 60,6 59,3"
+          stroke="url(#brainMain)" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <path d="M59,3 L66,7" stroke="url(#brainMain)" stroke-width="0.6" fill="none" opacity="0.4"/>
+    <!-- Tiny center bud -->
+    <circle cx="55" cy="1" r="1.5" fill="url(#brainMain)" opacity="0.4"/>
+
+    <!-- ====== FLOWING DECORATIVE LINE connecting brain to text ====== -->
+    <path d="M102,55 C108,55 114,52 120,52 C126,52 130,55 136,54"
+          stroke="url(#brainMain)" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.3"/>
+  </g>
+
+  <!-- ============ TEXT: "Camila" in elegant script ============ -->
+  <g transform="translate(152, 8)">
+    <text font-family="'Playfair Display', Georgia, serif"
+          font-size="52" font-weight="500" font-style="italic"
+          fill="url(#textGrad)" letter-spacing="-0.5">
+      <tspan x="0" y="50">Camila</tspan>
+    </text>
+  </g>
+
+  <!-- Elegant thin separator line -->
+  <line x1="155" y1="68" x2="360" y2="68" stroke="url(#brainMain)" stroke-width="0.6" opacity="0.35"/>
+
+  <!-- ============ TEXT: "VIARO" in refined caps ============ -->
+  <g transform="translate(155, 76)">
+    <text font-family="'Montserrat', sans-serif"
+          font-size="24" font-weight="300" letter-spacing="14"
+          fill="#78716c">
+      <tspan x="0" y="24">VIARO</tspan>
+    </text>
+  </g>
+
+  <!-- ============ TEXT: "PSICOLOGIA" subtitle ============ -->
+  <g transform="translate(155, 106)">
+    <text font-family="'Montserrat', sans-serif"
+          font-size="9.5" font-weight="500" letter-spacing="5.5"
+          fill="#a8a29e" opacity="0.75">
+      <tspan x="0" y="11">PSICOLOGIA</tspan>
+    </text>
+  </g>
+</svg>
