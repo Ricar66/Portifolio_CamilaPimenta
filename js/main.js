@@ -415,6 +415,292 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ================================================
+  // PRELOADER
+  // ================================================
+  const preloader = document.getElementById('preloader');
+  if (preloader) {
+    const hidePreloader = () => {
+      preloader.classList.add('loaded');
+      setTimeout(() => {
+        preloader.style.display = 'none';
+      }, 700);
+    };
+
+    // Hide after load + minimum 1.2s display
+    const minDelay = new Promise(resolve => setTimeout(resolve, 1200));
+    const pageLoad = new Promise(resolve => {
+      if (document.readyState === 'complete') resolve();
+      else window.addEventListener('load', resolve);
+    });
+
+    Promise.all([minDelay, pageLoad]).then(hidePreloader);
+  }
+
+  // ================================================
+  // COUNTER ANIMATION
+  // ================================================
+  const counterNumbers = document.querySelectorAll('.counter-number');
+
+  if (counterNumbers.length > 0) {
+    const animateCounter = (el) => {
+      const target = parseInt(el.dataset.target, 10);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const duration = 2000;
+      const startTime = performance.now();
+
+      const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
+
+      const update = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = easeOutQuart(progress);
+        const current = Math.round(easedProgress * target);
+
+        el.textContent = prefix + current.toLocaleString('pt-BR') + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      };
+
+      requestAnimationFrame(update);
+    };
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counterNumbers.forEach(el => counterObserver.observe(el));
+  }
+
+  // ================================================
+  // 3D TILT EFFECT ON AREA CARDS
+  // ================================================
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.innerWidth >= 768) {
+    const areaCards = document.querySelectorAll('.area-card');
+
+    areaCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -6;
+        const rotateY = ((x - centerX) / centerX) * 6;
+
+        card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px) scale(1.02)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+        card.style.transition = 'transform 0.5s ease-out';
+        setTimeout(() => {
+          card.style.transition = '';
+        }, 500);
+      });
+    });
+  }
+
+  // ================================================
+  // SCROLL PROGRESS BAR
+  // ================================================
+  const scrollProgress = document.getElementById('scroll-progress');
+  if (scrollProgress) {
+    const updateScrollProgress = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      scrollProgress.style.width = progress + '%';
+    };
+
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    updateScrollProgress();
+  }
+
+  // ================================================
+  // TYPING TEXT EFFECT
+  // ================================================
+  const typingEl = document.getElementById('typing-text');
+  if (typingEl) {
+    const words = [
+      'Ansiedade',
+      'Depressao',
+      'Autoestima',
+      'Estresse e Burnout',
+      'Relacionamentos',
+      'Autoconhecimento'
+    ];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 80;
+
+    function typeEffect() {
+      const currentWord = words[wordIndex];
+
+      if (isDeleting) {
+        typingEl.textContent = currentWord.substring(0, charIndex - 1);
+        charIndex--;
+        typingSpeed = 40;
+      } else {
+        typingEl.textContent = currentWord.substring(0, charIndex + 1);
+        charIndex++;
+        typingSpeed = 80;
+      }
+
+      if (!isDeleting && charIndex === currentWord.length) {
+        typingSpeed = 2000; // Pause at end
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        typingSpeed = 300; // Pause before next word
+      }
+
+      setTimeout(typeEffect, typingSpeed);
+    }
+
+    // Start after a delay to let the page load
+    setTimeout(typeEffect, 2000);
+  }
+
+  // ================================================
+  // MAGNETIC BUTTON EFFECT
+  // ================================================
+  if (window.innerWidth >= 768) {
+    const magneticBtns = document.querySelectorAll('.magnetic-btn');
+
+    magneticBtns.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px) scale(1.05)`;
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+        btn.style.transition = 'transform 0.4s ease-out';
+        setTimeout(() => {
+          btn.style.transition = '';
+        }, 400);
+      });
+    });
+  }
+
+  // ================================================
+  // CUSTOM CURSOR EFFECT (Desktop only)
+  // ================================================
+  if (window.innerWidth >= 1024 && !window.matchMedia('(hover: none)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const cursorDot = document.getElementById('cursor-dot');
+    const cursorRing = document.getElementById('cursor-ring');
+
+    if (cursorDot && cursorRing) {
+      let mouseX = 0, mouseY = 0;
+      let ringX = 0, ringY = 0;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursorDot.style.left = mouseX + 'px';
+        cursorDot.style.top = mouseY + 'px';
+      });
+
+      // Smooth ring follow
+      function animateRing() {
+        ringX += (mouseX - ringX) * 0.15;
+        ringY += (mouseY - ringY) * 0.15;
+        cursorRing.style.left = ringX + 'px';
+        cursorRing.style.top = ringY + 'px';
+        requestAnimationFrame(animateRing);
+      }
+      animateRing();
+
+      // Hover effect on interactive elements
+      const hoverTargets = document.querySelectorAll('a, button, .area-card, .blog-card, .testimonial-card, .identification-card, .counter-card, .instagram-card, .transformation-card, .booking-step-card, .contact-detail-card');
+      hoverTargets.forEach(target => {
+        target.addEventListener('mouseenter', () => {
+          cursorDot.classList.add('cursor-hover');
+          cursorRing.classList.add('cursor-hover');
+        });
+        target.addEventListener('mouseleave', () => {
+          cursorDot.classList.remove('cursor-hover');
+          cursorRing.classList.remove('cursor-hover');
+        });
+      });
+
+      // Hide cursor when leaving window
+      document.addEventListener('mouseleave', () => {
+        cursorDot.style.opacity = '0';
+        cursorRing.style.opacity = '0';
+      });
+      document.addEventListener('mouseenter', () => {
+        cursorDot.style.opacity = '1';
+        cursorRing.style.opacity = '0.5';
+      });
+
+      // Override default cursor on body
+      document.body.style.cursor = 'none';
+      hoverTargets.forEach(t => t.style.cursor = 'none');
+    }
+  }
+
+  // ================================================
+  // LGPD COOKIE CONSENT BANNER
+  // ================================================
+  const cookieBanner = document.getElementById('cookie-banner');
+  if (cookieBanner) {
+    const cookieAccept = document.getElementById('cookie-accept');
+    const cookieDecline = document.getElementById('cookie-decline');
+    const cookieConsent = localStorage.getItem('cookie-consent');
+
+    if (!cookieConsent) {
+      // Show banner after 2 seconds
+      setTimeout(() => {
+        cookieBanner.classList.add('cookie-visible');
+      }, 2000);
+    }
+
+    const hideBanner = (choice) => {
+      localStorage.setItem('cookie-consent', choice);
+      cookieBanner.classList.remove('cookie-visible');
+    };
+
+    if (cookieAccept) cookieAccept.addEventListener('click', () => hideBanner('accepted'));
+    if (cookieDecline) cookieDecline.addEventListener('click', () => hideBanner('declined'));
+  }
+
+  // ================================================
+  // SECTION HEADER REVEAL (Scale + Fade on scroll)
+  // ================================================
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const sectionHeaders = document.querySelectorAll('section h2');
+
+    const headerObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('header-revealed');
+          headerObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    sectionHeaders.forEach(el => {
+      el.classList.add('header-animate');
+      headerObserver.observe(el);
+    });
+  }
+
+  // ================================================
   // ACCESSIBILITY — Skip to content & focus management
   // ================================================
   // Trap focus in mobile menu when open

@@ -546,6 +546,412 @@ html {
   margin: 0 auto;
 }
 
+/* ---- Preloader ---- */
+#preloader {
+  z-index: 9999;
+}
+
+#preloader.loaded {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.preloader-logo {
+  animation: preloaderPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes preloaderPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(0.96); }
+}
+
+@keyframes preloaderBar {
+  0% { width: 0; }
+  50% { width: 70%; }
+  100% { width: 100%; }
+}
+
+.animate-preloader-bar {
+  animation: preloaderBar 1.5s ease-out forwards;
+}
+
+/* ---- Trust Banner Marquee ---- */
+.trust-marquee-wrapper {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.trust-marquee-track {
+  animation: marqueeScroll 35s linear infinite;
+  width: max-content;
+}
+
+.trust-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ---- Gradient Text ---- */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-sage) 0%, var(--color-sage-light) 50%, var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-instagram {
+  background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---- Animated Blobs ---- */
+.blob-shape {
+  animation: blobMorph 8s ease-in-out infinite alternate;
+}
+
+@keyframes blobMorph {
+  0% {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    transform: rotate(0deg) scale(1);
+  }
+  33% {
+    border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
+  }
+  66% {
+    border-radius: 40% 60% 60% 40% / 70% 30% 70% 30%;
+  }
+  100% {
+    border-radius: 70% 30% 50% 50% / 30% 70% 30% 70%;
+    transform: rotate(10deg) scale(1.05);
+  }
+}
+
+/* ---- Counter Cards ---- */
+.counter-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.counter-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-sage), var(--color-accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-smooth);
+}
+
+.counter-card:hover::after {
+  transform: scaleX(1);
+}
+
+/* ---- Timeline ---- */
+.timeline-line {
+  opacity: 0.6;
+}
+
+.timeline-item {
+  position: relative;
+}
+
+/* ---- Blog Cards ---- */
+.blog-card .blog-card-img {
+  transition: transform 0.7s var(--ease-smooth);
+}
+
+.blog-card:hover .blog-card-img {
+  transform: scale(1.1);
+}
+
+/* ---- Instagram Cards ---- */
+.instagram-card {
+  transition: transform 0.4s var(--ease-smooth);
+}
+
+.instagram-card:hover {
+  transform: scale(1.03);
+}
+
+/* ---- Tilt Effect (3D Cards) ---- */
+.area-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.area-card .tilt-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: inherit;
+  z-index: 2;
+}
+
+.area-card:hover .tilt-shine {
+  opacity: 1;
+}
+
+/* ---- Scroll Progress Bar ---- */
+#scroll-progress {
+  will-change: width;
+  transform-origin: left;
+}
+
+/* ---- Typing Cursor ---- */
+.typing-cursor::after {
+  content: '|';
+  animation: blink 0.8s step-end infinite;
+  color: var(--color-sage);
+  font-weight: 300;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ---- Animated Gradient Background (CTA) ---- */
+.animated-gradient-bg {
+  background: linear-gradient(-45deg, #3d4836, #5F6F52, #4d5a43, #2f372a, #8B9D77);
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ---- Floating Particles ---- */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  animation: particleFloat linear infinite;
+}
+
+.particle-1 {
+  width: 80px; height: 80px;
+  top: 10%; left: 5%;
+  animation-duration: 20s;
+}
+.particle-2 {
+  width: 120px; height: 120px;
+  top: 60%; right: 10%;
+  animation-duration: 25s;
+  animation-delay: -5s;
+}
+.particle-3 {
+  width: 60px; height: 60px;
+  bottom: 20%; left: 30%;
+  animation-duration: 18s;
+  animation-delay: -3s;
+}
+.particle-4 {
+  width: 100px; height: 100px;
+  top: 30%; right: 25%;
+  animation-duration: 22s;
+  animation-delay: -8s;
+}
+.particle-5 {
+  width: 40px; height: 40px;
+  top: 75%; left: 60%;
+  animation-duration: 15s;
+  animation-delay: -2s;
+}
+.particle-6 {
+  width: 70px; height: 70px;
+  top: 5%; right: 40%;
+  animation-duration: 28s;
+  animation-delay: -10s;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% {
+    transform: translateY(-200px) translateX(100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ---- Contact Detail Cards ---- */
+.contact-detail-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-detail-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-sage), var(--color-accent));
+  transform: scaleX(0);
+  transition: transform 0.4s var(--ease-smooth);
+}
+
+.contact-detail-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* ---- Magnetic Button ---- */
+.magnetic-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.magnetic-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(95, 111, 82, 0.08);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.magnetic-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* ---- Wave Dividers ---- */
+.wave-divider-1,
+.wave-divider-cta,
+.wave-divider-hero {
+  line-height: 0;
+  margin-top: -1px;
+}
+
+/* ---- Custom Cursor ---- */
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: var(--color-sage);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+  mix-blend-mode: difference;
+}
+
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--color-sage-light);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease-out, height 0.3s ease-out, border-color 0.3s;
+  opacity: 0.5;
+}
+
+.custom-cursor-dot.cursor-hover {
+  width: 14px;
+  height: 14px;
+  background: var(--color-accent);
+}
+
+.custom-cursor-ring.cursor-hover {
+  width: 50px;
+  height: 50px;
+  border-color: var(--color-accent);
+  opacity: 0.3;
+}
+
+/* Hide custom cursor on touch devices */
+@media (hover: none) {
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none !important;
+  }
+}
+
+/* ---- Transformation Cards ---- */
+.transformation-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.transformation-card::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 0;
+  background: linear-gradient(to bottom, var(--color-sage-pale), var(--color-sage));
+  transform: translate(-50%, -50%);
+  transition: height 0.4s var(--ease-smooth);
+  z-index: 1;
+}
+
+.transformation-card:hover::before {
+  height: 100%;
+}
+
+/* ---- Booking Step Cards ---- */
+.booking-step-card {
+  position: relative;
+}
+
+/* ---- Section Header Reveal Animation ---- */
+.header-animate {
+  opacity: 0;
+  transform: translateY(12px) scale(0.97);
+  transition: opacity 0.7s var(--ease-smooth), transform 0.7s var(--ease-smooth);
+}
+
+.header-animate.header-revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ---- Cookie Banner ---- */
+#cookie-banner.cookie-visible {
+  transform: translateY(0);
+}
+
 /* ---- Mobile Responsive ---- */
 @media (max-width: 768px) {
   .nav-link {
@@ -589,6 +995,42 @@ html {
     bottom: 1rem;
     width: 2.75rem;
     height: 2.75rem;
+  }
+
+  /* Trust Marquee mobile */
+  .trust-marquee-track {
+    animation-duration: 20s;
+  }
+
+  /* Counter numbers mobile */
+  .counter-number {
+    font-size: 2rem !important;
+  }
+
+  /* Timeline mobile */
+  .timeline-line {
+    left: 1.5rem !important;
+  }
+
+  /* Blog cards mobile */
+  .blog-card {
+    max-width: 100%;
+  }
+
+  /* Custom cursor hidden on mobile */
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none !important;
+  }
+
+  /* Transformation cards — keep 2-col on mobile, just reduce padding */
+  .transformation-card .p-6 {
+    padding: 1rem;
+  }
+
+  /* Booking step connector hidden */
+  .booking-step-card .hidden {
+    display: none !important;
   }
 }
 
